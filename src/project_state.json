@@ -1,0 +1,96 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 3,
+  "summary": "Website project for mobile phone spare parts: build a full e-commerce store with cart and Stripe checkout.",
+  "architectural_notes": [
+    "Payments via Stripe are required for checkout."
+  ],
+  "known_issues": [],
+  "isFixRequest": false,
+  "imageRequirements": "## Required Images\n- Minimalist spare parts store logo, monochrome with warm accent (logo-spareparts.dim_512x512.png)\n- Wide hero banner featuring abstract mobile repair/spare parts shapes, clean modern style (hero-banner.dim_1600x600.png)\n- Set of 6 simple line icons for categories (battery, screen, camera, charging port, speaker, flex cable), consistent stroke style (category-icons-set.dim_1024x1024.png)\n- Favicon based on logo mark, simplified (favicon-mark.dim_128x128.png)",
+  "existing_features": [
+    {
+      "id": "feature-create-the-core-storefront-user-experience-for-a-mobile-phone-spare-parts-store-a-responsive-home-page-product-listing-search-filters-product-details-page-and-persistent-shopping-cart",
+      "title": "Create the core storefront user experience for a mobile phone spare parts store: a responsive home page, product listing (search + filters), product details page, and persistent shopping cart.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-an-admin-ui-to-manage-products-create-edit-archive-from-the-browser",
+      "title": "Add an admin UI to manage products (create, edit, archive) from the browser.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-stripe-checkout-flow-for-placing-orders-collect-cart-details-create-a-stripe-checkout-session-redirect-to-stripe-and-show-success-cancel-pages-on-return",
+      "title": "Implement Stripe Checkout flow for placing orders: collect cart details, create a Stripe Checkout Session, redirect to Stripe, and show success/cancel pages on return.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-record-orders-in-the-backend-and-provide-an-order-confirmation-view-store-order-items-totals-status-and-stripe-session-payment-identifiers-show-a-confirmation-summary-after-payment-success",
+      "title": "Record orders in the backend and provide an order confirmation view: store order items, totals, status, and Stripe session/payment identifiers; show a confirmation summary after payment success.",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-internet-identity-sign-in-support-and-tie-admin-permissions-and-optionally-order-history-to-authenticated-principals",
+      "title": "Add Internet Identity sign-in support and tie admin permissions (and optionally order history) to authenticated principals.",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-coherent-visual-theme-and-apply-it-consistently-across-pages-typography-spacing-components-and-mobile-first-layout-avoid-blue-purple-as-primary-brand-colors",
+      "title": "Create a coherent visual theme and apply it consistently across pages (typography, spacing, components, and mobile-first layout). Avoid blue/purple as primary brand colors.",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-basic-commerce-ux-essentials-currency-display-stock-availability-messaging-and-helpful-empty-error-states-for-loading-no-results-and-checkout-failures",
+      "title": "Add basic commerce UX essentials: currency display, stock/availability messaging, and helpful empty/error states for loading, no results, and checkout failures.",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-static-asset-handling-for-generated-brand-images-and-use-them-in-the-ui-logo-favicon-and-a-simple-hero-banner-image",
+      "title": "Add static asset handling for generated brand images and use them in the UI (logo, favicon, and a simple hero/banner image).",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Create a mobile phone spare parts e-commerce website with product listings, shopping cart, and Stripe-powered checkout.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Implement backend product catalog storage and APIs to support the storefront: list products, get product by ID, and (admin-only) create/update/archive products.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "status": "pending"
+    }
+  ],
+  "projectName": "Mobile phone spare parts e-commerce store with cart and Stripe checkout",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

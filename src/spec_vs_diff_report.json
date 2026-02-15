@@ -1,0 +1,118 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-15T09:10:43.117Z",
+  "summary": "The diff implements core routing/layout, Internet Identity integration, an admin products page/guard, a cart page UI with checkout button, and some Stripe session creation wiring. However, several BuildRequest requirements are either only partially implemented or not evidenced in the diff: the product schema/back-end listing behavior does not match the required catalog fields and archived filtering, Stripe totals appear client-derived rather than server-computed, and order recording/retrieval plus confirmation summary are not shown. Static assets are referenced for logo/hero but favicon and category icon set usage is not evidenced.",
+  "missing_requirements": [
+    {
+      "id": "REQ-1",
+      "requirement": "Product listing with search + filters (brand and category), product details page, and cart persistence across reloads.",
+      "reason": "Routing includes listing/details pages, but the diff does not provide evidence that ProductListPage implements brand/category filters and search, nor that the cart persists via localStorage (cart state file is not shown).",
+      "evidence": [
+        "frontend/src/App.tsx",
+        "frontend/src/pages/HomePage.tsx (category links set search params, but listing/filter UI not shown)",
+        "frontend/src/pages/CartPage.tsx (uses useCart, but persistence not evidenced)"
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "requirement": "Backend product model must include id, name, description, price, currency, category, brand/model compatibility, stock/availability, image URLs, and archived flag; archived products must not appear in public listing.",
+      "reason": "Backend Product type only includes id/name/description/price/active. getProducts returns all products without filtering out inactive/archived items, and there is no currency/category/compatibility/stock/imageUrls/archived flag in the shown schema.",
+      "evidence": [
+        "backend/main.mo (Product type: { id; name; description; price; active })",
+        "backend/main.mo (getProducts returns products.values().toArray())",
+        "backend/main.mo (archiveProduct sets active = false, but getProducts does not exclude inactive)"
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "requirement": "Stripe order amount sent to Stripe must be computed server-side from current product prices (not trusting client-submitted totals).",
+      "reason": "Frontend constructs ShoppingItem objects including priceInCents and sends them to createCheckoutSession. This indicates the backend may be relying on client-provided prices; there is no evidence in the shown backend code that it recomputes totals from stored product prices.",
+      "evidence": [
+        "frontend/src/components/checkout/CheckoutButton.tsx (maps cart to ShoppingItem with priceInCents)",
+        "frontend/src/hooks/useCreateCheckoutSession.ts (calls actor.createCheckoutSession(items, ...))",
+        "backend/main.mo (Stripe integration section truncated; no shown server-side recomputation)"
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "requirement": "Record orders in backend and provide order confirmation view that fetches order by order id and displays itemized summary (items, quantities, totals).",
+      "reason": "Although backend defines an Order type/map, the frontend success page does not fetch an order record or render an order summary; it only shows an optional session_id and clears the cart after a timeout. No frontend hook/page for retrieving order by id is evidenced.",
+      "evidence": [
+        "backend/main.mo (Order type and orders/sessionToOrder maps present but API usage not shown)",
+        "frontend/src/pages/PaymentSuccessPage.tsx (no order fetch; no line items/totals displayed)"
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "requirement": "Stock/availability messaging and disable add-to-cart when out of stock/unavailable; clear no-results state in product listing.",
+      "reason": "The shown Product schema has no stock/availability fields, and no UI evidence is provided for availability messaging or disabling add-to-cart. Listing no-results state is not evidenced because ProductListPage is not included in the diff summary.",
+      "evidence": [
+        "backend/main.mo (Product schema lacks stock/availability)",
+        "frontend/src/pages/HomePage.tsx (featured products; no stock messaging shown)",
+        "frontend/src/App.tsx (ProductListPage route exists but implementation not shown)"
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "requirement": "Favicon based on logo mark and generated category icon set stored under frontend/public/assets/generated and used in UI.",
+      "reason": "The layout references the generated logo image and the home page references the hero banner, but there is no evidence of a favicon being set/used, nor usage of the provided generated category icon set image (the UI uses lucide-react icons instead). Also, no files under frontend/public/assets/generated are shown in the diff summary.",
+      "evidence": [
+        "frontend/src/components/layout/StoreLayout.tsx (references /assets/generated/logo-spareparts.dim_512x512.png)",
+        "frontend/src/pages/HomePage.tsx (references /assets/generated/hero-banner.dim_1600x600.png; uses lucide-react icons for categories)"
+      ]
+    }
+  ],
+  "hallucinated_features": [
+    {
+      "description": "User profile creation/storage and mandatory profile setup dialog gating continued use.",
+      "reason": "BuildRequest did not ask for user profiles (name/email) or a profile setup flow; it only required Internet Identity sign-in/out and admin authorization.",
+      "evidence": [
+        "backend/main.mo (UserProfile type and get/save profile methods)",
+        "frontend/src/components/auth/ProfileSetupDialog.tsx",
+        "frontend/src/components/layout/StoreLayout.tsx (shows ProfileSetupDialog based on userProfile state)"
+      ]
+    },
+    {
+      "description": "Secret-parameter-based access control initialization using a 'caffeineAdminToken' URL parameter.",
+      "reason": "BuildRequest specifies admin allowlist configured in backend code; it does not mention initializing admin privileges via a URL token/secret parameter.",
+      "evidence": [
+        "frontend/src/hooks/useActor.ts (getSecretParameter('caffeineAdminToken'); calls actor._initializeAccessControlWithSecret(adminToken))"
+      ]
+    }
+  ],
+  "confidence": 0.64,
+  "changed_files": [
+    "all_files_summary.json",
+    "backend/main.mo",
+    "frontend-file-summaries.txt",
+    "frontend/index.css",
+    "frontend/index.html",
+    "frontend/src/App.tsx",
+    "frontend/src/components/States.tsx",
+    "frontend/src/components/admin/AdminRouteGuard.tsx",
+    "frontend/src/components/auth/ProfileSetupDialog.tsx",
+    "frontend/src/components/checkout/CheckoutButton.tsx",
+    "frontend/src/components/layout/StoreLayout.tsx",
+    "frontend/src/hooks/useActor.ts",
+    "frontend/src/hooks/useAdminProducts.ts",
+    "frontend/src/hooks/useCreateCheckoutSession.ts",
+    "frontend/src/hooks/useInternetIdentity.ts",
+    "frontend/src/hooks/useProducts.ts",
+    "frontend/src/hooks/useUserProfile.ts",
+    "frontend/src/index.css",
+    "frontend/src/main.tsx",
+    "frontend/src/pages/CartPage.tsx",
+    "frontend/src/pages/HomePage.tsx",
+    "frontend/src/pages/PaymentFailurePage.tsx",
+    "frontend/src/pages/PaymentSuccessPage.tsx",
+    "frontend/src/pages/ProductDetailsPage.tsx",
+    "frontend/src/pages/ProductListPage.tsx",
+    "frontend/src/pages/admin/AdminProductsPage.tsx",
+    "frontend/src/state/cart.ts",
+    "frontend/src/utils/format.ts",
+    "frontend/src/utils/urlParams.ts",
+    "frontend/tailwind.config.js",
+    "project_state.json"
+  ]
+}

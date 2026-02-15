@@ -1,0 +1,199 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-create-the-core-storefront-user-experience-for-a-mobile-phone-spare-parts-store-a-responsive-home-page-product-listing-search-filters-product-details-page-and-persistent-shopping-cart",
+      "featureTitle": "Create the core storefront user experience for a mobile phone spare parts store: a responsive home page, product listing (search + filters), product details page, and persistent shopping cart.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/hooks/useProducts.ts",
+        "frontend/src/pages/CartPage.tsx",
+        "frontend/src/pages/HomePage.tsx",
+        "frontend/src/pages/ProductDetailsPage.tsx",
+        "frontend/src/pages/ProductListPage.tsx",
+        "frontend/src/state/cart.ts",
+        "frontend/src/utils/format.ts"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "stripe@3.0.0",
+        "http-outcalls@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-1"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-an-admin-ui-to-manage-products-create-edit-archive-from-the-browser",
+      "featureTitle": "Add an admin UI to manage products (create, edit, archive) from the browser.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/admin/AdminRouteGuard.tsx",
+        "frontend/src/hooks/useAdminProducts.ts",
+        "frontend/src/pages/admin/AdminProductsPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "stripe@3.0.0",
+        "http-outcalls@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-3"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-stripe-checkout-flow-for-placing-orders-collect-cart-details-create-a-stripe-checkout-session-redirect-to-stripe-and-show-success-cancel-pages-on-return",
+      "featureTitle": "Implement Stripe Checkout flow for placing orders: collect cart details, create a Stripe Checkout Session, redirect to Stripe, and show success/cancel pages on return.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/checkout/CheckoutButton.tsx",
+        "frontend/src/hooks/useCreateCheckoutSession.ts",
+        "frontend/src/pages/PaymentFailurePage.tsx",
+        "frontend/src/pages/PaymentSuccessPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "stripe@3.0.0",
+        "http-outcalls@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-4"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-record-orders-in-the-backend-and-provide-an-order-confirmation-view-store-order-items-totals-status-and-stripe-session-payment-identifiers-show-a-confirmation-summary-after-payment-success",
+      "featureTitle": "Record orders in the backend and provide an order confirmation view: store order items, totals, status, and Stripe session/payment identifiers; show a confirmation summary after payment success.",
+      "files": [
+        "frontend/src/pages/PaymentSuccessPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "stripe@3.0.0",
+        "http-outcalls@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-5"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-internet-identity-sign-in-support-and-tie-admin-permissions-and-optionally-order-history-to-authenticated-principals",
+      "featureTitle": "Add Internet Identity sign-in support and tie admin permissions (and optionally order history) to authenticated principals.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/auth/ProfileSetupDialog.tsx",
+        "frontend/src/hooks/useActor.ts",
+        "frontend/src/hooks/useUserProfile.ts"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "stripe@3.0.0",
+        "http-outcalls@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-6"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-create-a-coherent-visual-theme-and-apply-it-consistently-across-pages-typography-spacing-components-and-mobile-first-layout-avoid-blue-purple-as-primary-brand-colors",
+      "featureTitle": "Create a coherent visual theme and apply it consistently across pages (typography, spacing, components, and mobile-first layout). Avoid blue/purple as primary brand colors.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/layout/StoreLayout.tsx",
+        "frontend/src/index.css",
+        "frontend/tailwind.config.js"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "stripe@3.0.0",
+        "http-outcalls@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-7"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-basic-commerce-ux-essentials-currency-display-stock-availability-messaging-and-helpful-empty-error-states-for-loading-no-results-and-checkout-failures",
+      "featureTitle": "Add basic commerce UX essentials: currency display, stock/availability messaging, and helpful empty/error states for loading, no results, and checkout failures.",
+      "files": [
+        "frontend/src/pages/CartPage.tsx",
+        "frontend/src/pages/PaymentFailurePage.tsx",
+        "frontend/src/pages/ProductDetailsPage.tsx",
+        "frontend/src/pages/ProductListPage.tsx",
+        "frontend/src/utils/format.ts"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "stripe@3.0.0",
+        "http-outcalls@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-8"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-static-asset-handling-for-generated-brand-images-and-use-them-in-the-ui-logo-favicon-and-a-simple-hero-banner-image",
+      "featureTitle": "Add static asset handling for generated brand images and use them in the UI (logo, favicon, and a simple hero/banner image).",
+      "files": [
+        "frontend/index.html",
+        "frontend/src/components/layout/StoreLayout.tsx",
+        "frontend/src/pages/HomePage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "stripe@3.0.0",
+        "http-outcalls@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-9"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

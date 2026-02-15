@@ -1,0 +1,203 @@
+{
+  "kind": "build_request",
+  "title": "Mobile phone spare parts e-commerce store with cart and Stripe checkout",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "text": "Create the core storefront user experience for a mobile phone spare parts store: a responsive home page, product listing (search + filters), product details page, and persistent shopping cart.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1",
+          "msg-2"
+        ],
+        "quotes": [
+          "Create a Website for mobile phones spare parts",
+          "Options B"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Users can browse a product grid/list with at least: name, price, thumbnail image, and basic compatibility info.",
+        "Users can search by part name/model and filter by at least: phone brand and part category.",
+        "Users can open a product details page and add a selected quantity to cart.",
+        "Cart persists across page reloads (e.g., local storage) and supports update quantity + remove item.",
+        "UI works well on mobile screens (no horizontal scrolling; key actions accessible)."
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Implement backend product catalog storage and APIs to support the storefront: list products, get product by ID, and (admin-only) create/update/archive products.",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Create a Website for mobile phones spare parts"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Backend exposes query methods to list products and fetch a single product by ID.",
+        "Products include at minimum: id, name, description, price, currency, category, brand/model compatibility, stock/availability, image URLs, and archived flag.",
+        "Archived products do not appear in the public product listing.",
+        "Admin-only mutations exist for create/update/archive; unauthorized callers are rejected with a clear error."
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Add an admin UI to manage products (create, edit, archive) from the browser.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Create a Website for mobile phones spare parts"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Admin area is accessible via a dedicated route (not linked prominently in the storefront navigation).",
+        "Admin can create a new product and see it appear in the storefront immediately after saving.",
+        "Admin can edit an existing product and changes reflect on the product details page.",
+        "Admin can archive a product and it disappears from public listings."
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "text": "Implement Stripe Checkout flow for placing orders: collect cart details, create a Stripe Checkout Session, redirect to Stripe, and show success/cancel pages on return.",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Options B"
+        ]
+      },
+      "acceptanceCriteria": [
+        "From the cart, the user can click a checkout button that initiates a Stripe Checkout Session creation.",
+        "On successful session creation, the app redirects the user to Stripe-hosted checkout.",
+        "The app provides distinct success and cancel pages/routes after Stripe redirects back.",
+        "The order amount sent to Stripe is computed server-side from current product prices (not trusting client-submitted totals)."
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "text": "Record orders in the backend and provide an order confirmation view: store order items, totals, status, and Stripe session/payment identifiers; show a confirmation summary after payment success.",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Options B"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Backend stores an order record that includes: order id, line items (product id/name snapshot, unit price, quantity), subtotal/total, currency, created timestamp, and payment status.",
+        "On the success page, users see an order summary that matches what they purchased (items, quantities, totals).",
+        "An order can be retrieved by order id from the frontend to render the confirmation summary."
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "text": "Add Internet Identity sign-in support and tie admin permissions (and optionally order history) to authenticated principals.",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Options B"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Users can sign in and sign out with Internet Identity from the UI.",
+        "Backend identifies the caller principal and uses it to authorize admin-only product mutations.",
+        "Admin principal(s) can be configured in backend code as an allowlist.",
+        "Unauthenticated users can still browse products and manage a local cart."
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "text": "Create a coherent visual theme and apply it consistently across pages (typography, spacing, components, and mobile-first layout). Avoid blue/purple as primary brand colors.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1",
+          "msg-2"
+        ],
+        "quotes": [
+          "Create a Website for mobile phones spare parts",
+          "Options B"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Theme uses a consistent palette (e.g., charcoal/white with a warm accent like amber or lime) and consistent typography scale.",
+        "Buttons, inputs, cards, and alerts follow a consistent style across the app.",
+        "All key screens (home, listing, details, cart, checkout return pages, admin) follow the same design language."
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "text": "Add basic commerce UX essentials: currency display, stock/availability messaging, and helpful empty/error states for loading, no results, and checkout failures.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Options B"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Prices consistently show currency (e.g., USD) across listing, details, cart, and confirmation.",
+        "If a product is out of stock/unavailable, the UI indicates it clearly and disables add-to-cart as appropriate.",
+        "Product listing shows a clear 'no results' state when filters/search return nothing.",
+        "Checkout initiation failures show a readable error message and do not clear the cart."
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "text": "Add static asset handling for generated brand images and use them in the UI (logo, favicon, and a simple hero/banner image).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Create a Website for mobile phones spare parts"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Generated images are stored under frontend/public/assets/generated and referenced directly by the frontend.",
+        "Logo appears in the header/navigation and as a favicon.",
+        "A hero/banner image appears on the home page without causing layout shift on mobile."
+      ]
+    }
+  ],
+  "constraints": [
+    "Use English for all user-facing text.",
+    "Backend must remain a single Motoko actor (no additional backend services).",
+    "Do not edit files under frontend immutablePaths (compose existing UI components instead).",
+    "Do not introduce third-party auth providers beyond Internet Identity.",
+    "Do not add external databases; persist data in-canister."
+  ],
+  "nonGoals": [
+    "Advanced inventory management (multi-warehouse, suppliers, purchase orders).",
+    "Customer support chat or real-time messaging.",
+    "Shipping label purchasing or carrier integrations.",
+    "Marketplace features (multi-vendor).",
+    "Recommendations/AI features."
+  ],
+  "imageRequirements": {
+    "required": [
+      "Minimalist spare parts store logo, monochrome with warm accent (logo-spareparts.dim_512x512.png)",
+      "Wide hero banner featuring abstract mobile repair/spare parts shapes, clean modern style (hero-banner.dim_1600x600.png)",
+      "Set of 6 simple line icons for categories (battery, screen, camera, charging port, speaker, flex cable), consistent stroke style (category-icons-set.dim_1024x1024.png)",
+      "Favicon based on logo mark, simplified (favicon-mark.dim_128x128.png)"
+    ],
+    "edits": []
+  }
+}
